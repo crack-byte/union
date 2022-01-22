@@ -1,0 +1,40 @@
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppComponent} from './app.component';
+import {LoginComponent} from './components/login/login.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from '@angular/common/http';
+import {RouterModule, Routes} from "@angular/router";
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {CarouselComponent} from './components/carousel/carousel.component';
+import {NgxSpinnerModule} from "ngx-spinner";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
+const routes: Routes = [
+  {path: 'login', component: LoginComponent},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'dashboard', component: DashboardComponent}
+];
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    DashboardComponent,
+    CarouselComponent
+  ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
+
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule {
+}
