@@ -1,19 +1,23 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AnimeChanQuote} from "../../templates/anime-chan-quote";
 import {ApiService} from "../../service/api.service";
-import {NgxSpinnerService} from "ngx-spinner";
-import {Observable} from "rxjs";
+import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.css']
+  styleUrls: ['./carousel.component.css'],
+  providers: [NgbCarouselConfig]
 })
 export class CarouselComponent implements OnInit {
   @Input()
-  quotes: AnimeChanQuote[] = [];
+  public quotes: AnimeChanQuote[] = [];
 
-  constructor(private apiService: ApiService, private spinnerService: NgxSpinnerService) {
+  constructor(private apiService: ApiService,private config: NgbCarouselConfig) {
+    this.getAnimeQuotes();
+    config.interval = 2000;
+    config.keyboard = true;
+    config.pauseOnHover = true;
   }
 
   ngOnInit(): void {

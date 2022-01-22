@@ -7,7 +7,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {RouterModule, Routes} from "@angular/router";
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {CarouselComponent} from './components/carousel/carousel.component';
-import {NgxSpinnerModule} from "ngx-spinner";
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 const routes: Routes = [
@@ -28,7 +28,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    NgxSpinnerModule,
+    NgbModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
 
