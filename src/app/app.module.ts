@@ -9,6 +9,7 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {CarouselComponent} from './components/carousel/carousel.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ItemsComponent} from './components/items/items.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    CarouselComponent
+    CarouselComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,

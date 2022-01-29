@@ -9,7 +9,8 @@ import {environment} from "../../environments/environment";
 export class ApiService {
 
   private static httpHeaders = new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
   });
 
   constructor(private http: HttpClient) {
@@ -21,7 +22,12 @@ export class ApiService {
   }
 
   public get(url: string, host?: string | null): Observable<any> {
-    let options = {headers: ApiService.httpHeaders};
+
+    let options = {
+      headers: new HttpHeaders({
+        'Accept': '*/*'
+      })
+    };
     if (host === null) {
       url = environment.host + url;
     }

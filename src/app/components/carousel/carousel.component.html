@@ -1,4 +1,11 @@
-<ngb-carousel class="ng-carousel" [showNavigationArrows]="false">
+<ngb-carousel class="ng-carousel"
+              [showNavigationArrows]="false"
+              [showNavigationIndicators]="true"
+              [interval]="5000"
+              [keyboard]="true"
+              [pauseOnHover]="true"
+              [wrap]="true"
+              [activeId]="'secondSlide'">
   <ng-template ngbSlide ngbButton *ngFor="let q of quotes">
     <div class="ng-text text-center">
       <h3>{{ q.anime }}</h3>

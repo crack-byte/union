@@ -13,11 +13,8 @@ export class CarouselComponent implements OnInit {
   @Input()
   public quotes: AnimeChanQuote[] = [];
 
-  constructor(private apiService: ApiService,private config: NgbCarouselConfig) {
+  constructor(private apiService: ApiService) {
     this.getAnimeQuotes();
-    config.interval = 2000;
-    config.keyboard = true;
-    config.pauseOnHover = true;
   }
 
   ngOnInit(): void {
