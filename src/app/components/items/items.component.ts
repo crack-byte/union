@@ -1,6 +1,9 @@
-import {Component, OnInit} from '@angular/core';
 import {AnimeService} from '../../jikan/services/AnimeService';
 import {anime_search} from "../../jikan/models/anime_search";
+import {NgxSpinnerService} from "ngx-spinner";
+import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
+import {fromEvent} from "rxjs";
+import {debounceTime, distinctUntilChanged, filter, map} from "rxjs/operators";
 
 @Component({
   selector: 'app-items',
@@ -9,19 +12,42 @@ import {anime_search} from "../../jikan/models/anime_search";
 })
 export class ItemsComponent implements OnInit {
   public animeList: anime_search | undefined;
+  @ViewChild('movieSearchInput', {static: true}) movieSearchInput: ElementRef | undefined;
 
-  constructor(private animeService: AnimeService) {
-
+  constructor(private animeService: AnimeService, private spinner: NgxSpinnerService) {
     this.getAnimeList();
   }
 
   ngOnInit(): void {
+    this.spinner.show('items-spinner');
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide('items-spinner');
+    }, 5000);
+
+    fromEvent(this.movieSearchInput?.nativeElement, 'keyup')
+      .pipe(
+        map((event: any) => {
+          return event.target.value;
+        })
+        , filter(res => res.length > 2 || res.length == 0)
+        , debounceTime(1000)
+        , distinctUntilChanged()
+      ).subscribe((text: string) => {
+      this.getAnimeListByName(text);
+    });
   }
 
   getAnimeList() {
-    this.animeService.getAnimeSearch()
+    this.animeService.getAnimeSearchWithOptions({limit: 9, sfw: true})
       .subscribe(value => {
-        console.log(value);
+        this.animeList = value;
+      });
+  }
+
+  getAnimeListByName(q?: string) {
+    this.animeService.getAnimeSearchWithOptions({limit: 9, sfw: true, q: q})
+      .subscribe(value => {
         this.animeList = value;
       });
   }

@@ -10,10 +10,13 @@ import {CarouselComponent} from './components/carousel/carousel.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ItemsComponent} from './components/items/items.component';
+import {ElipsesPipe} from './pipes/elipses.pipe';
+import {CombinePipe} from './pipes/combine.pipe';
+import {NgxSpinnerModule} from "ngx-spinner";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent}
 ];
 
@@ -23,7 +26,9 @@ const routes: Routes = [
     LoginComponent,
     DashboardComponent,
     CarouselComponent,
-    ItemsComponent
+    ItemsComponent,
+    ElipsesPipe,
+    CombinePipe
   ],
   imports: [
     BrowserModule,
@@ -33,10 +38,11 @@ const routes: Routes = [
     NgbModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
-
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
 }

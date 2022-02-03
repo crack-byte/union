@@ -5,7 +5,6 @@
 import type {anime_meta} from './anime_meta';
 import type {manga_meta} from './manga_meta';
 import type {pagination} from './pagination';
-import type {String} from './String';
 import type {user_by_id} from './user_by_id';
 
 /**
@@ -16,7 +15,7 @@ data?: Array<{
 /**
  * MAL IDs of recommendations is both of the MAL ID's with a `-` delimiter
  */
-mal_id?: String;
+mal_id?: string;
 /**
  * Array of 2 entries that are being recommended to each other
  */

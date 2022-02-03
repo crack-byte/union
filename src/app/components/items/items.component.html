@@ -1,26 +1,52 @@
 <div class="album py-5 bg-light">
+  <div class="container-fluid ">
+    <div class="row height bottom-margin justify-content-center align-items-center">
+      <div class="col-md-6">
+        <input type="text" class="form-control form-input" #movieSearchInput placeholder="Search anything..."/>
+      </div>
+      <div class="col-md-2">
+        <div class="btn-group">
+          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+            Small button
+          </button>
+          <select class="dropdown-menu" name="">
+            <option class="dropdown-item" value="TV">TV</option>
+            <option class="dropdown-item" value="OVA">OVA</option>
+            <option class="dropdown-item" value="MOVIE">Movie</option>
+            <option class="dropdown-item" value="SPECIAL">Special</option>
+            <option class="dropdown-item" value="ONA">ONA</option>
+            <option class="dropdown-item" value="MUSIC">Music</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <ng-container *ngIf="animeList">
         <div *ngFor="let anime of animeList.data">
           <div class="col">
             <div class="card shadow-sm">
-              <img src="{{anime.images?.jpg?.image_url}}" class="card-img-top img-fluid  w-100 text-center" alt="default"/>
-              <div class="card-title"><p class="card-text">{{anime.title}}</p></div>
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
+              <div class="card-thumbnail">
+                <img src="{{anime.images?.webp?.large_image_url}}" class="card-img-top img-fluid  w-100 text-center"
+                     alt="default"/>
               </div>
+              <div class="card-body">
+                <h5 class="card-title">{{anime.title}}</h5>
+                <p class="card-text">{{anime.synopsis | elipses:255}}</p>
+                <p class="card-text">{{anime.genres | combine:' ,'}}</p>
+              </div>
+              <!--<div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+              </div>-->
             </div>
           </div>
         </div>
+      </ng-container>
+      <ng-container *ngIf="!animeList">
+        <ngx-spinner name="items-spinner" type="pacman" color="yellow"></ngx-spinner>
       </ng-container>
     </div>
   </div>

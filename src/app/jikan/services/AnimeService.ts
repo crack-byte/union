@@ -428,4 +428,44 @@ export class AnimeService {
     });
   }
 
+  public getAnimeSearchWithOptions(options?:
+                                     {
+                                       page?: number,
+                                       limit?: number,
+                                       q?: string,
+                                       type?: anime_search_query_type,
+                                       score?: number,
+                                       status?: anime_search_query_status,
+                                       rating?: anime_search_query_rating,
+                                       sfw?: boolean,
+                                       genres?: string,
+                                       orderBy?: anime_search_query_orderby,
+                                       sort?: search_query_sort,
+                                       letter?: string,
+                                       producer?: string,
+                                     }
+  ): Observable<anime_search> {
+    return __request(JikanApi, this.http, {
+      method: 'GET',
+      url: '/anime',
+      query: {
+        'page': options?.page,
+        'limit': options?.limit,
+        'q': options?.q,
+        'type': options?.type,
+        'score': options?.score,
+        'status': options?.status,
+        'rating': options?.rating,
+        'sfw': options?.sfw,
+        'genres': options?.genres,
+        'order_by': options?.orderBy,
+        'sort': options?.sort,
+        'letter': options?.letter,
+        'producer': options?.producer,
+      },
+      errors: {
+        400: `Error: Bad request. When required parameters were not supplied.`,
+      },
+    });
+  }
 }

@@ -1,6 +1,3 @@
-/* istanbul ignore file */
-/* tslint:disable */
-/* eslint-disable */
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import type {Observable} from 'rxjs';
@@ -10,7 +7,9 @@ import type {recommendations} from '../models/recommendations';
 import {JikanApi} from '../core/JikanApi';
 import {request as __request} from '../core/request';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RecommendationsService {
 
     constructor(private readonly http: HttpClient) {}
