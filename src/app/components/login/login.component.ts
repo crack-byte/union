@@ -18,9 +18,9 @@ export class LoginComponent implements OnInit {
   }
 
   authenticate() {
-    this.apiService
-      .post('/api/v1/login', this.login)
-      .subscribe(value => console.log(value));
+    // this.apiService
+    //   .post('/api/v1/login', this.login)
+    //   .subscribe(value => console.log(value));
     this.router.navigateByUrl('/dashboard');
   }
 

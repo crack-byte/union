@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ApiService} from "../../service/api.service";
-import {JikanAnimeResponse} from "../../templates/jikan-anime-response";
+import {AnimeService} from '../../jikan/services/AnimeService';
+import {anime_search} from "../../jikan/models/anime_search";
 
 @Component({
   selector: 'app-items',
@@ -8,9 +8,9 @@ import {JikanAnimeResponse} from "../../templates/jikan-anime-response";
   styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit {
-  public animeList: JikanAnimeResponse | undefined;
+  public animeList: anime_search | undefined;
 
-  constructor(private apiService: ApiService) {
+  constructor(private animeService: AnimeService) {
 
     this.getAnimeList();
   }
@@ -19,10 +19,10 @@ export class ItemsComponent implements OnInit {
   }
 
   getAnimeList() {
-    this.apiService.get('https://api.jikan.moe/v4/anime?limit=9&status=complete&sfw=true&order_by=end_date&sort=desc')
+    this.animeService.getAnimeSearch()
       .subscribe(value => {
+        console.log(value);
         this.animeList = value;
-        console.log(value.data[0].images.jpg.image_url);
       });
   }
 }
