@@ -4,6 +4,8 @@ import {NgxSpinnerService} from "ngx-spinner";
 import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import {fromEvent} from "rxjs";
 import {debounceTime, distinctUntilChanged, filter, map} from "rxjs/operators";
+import {anime_search_query_orderby} from "../../jikan/models/anime_search_query_orderby";
+import {search_query_sort} from "../../jikan/models/search_query_sort";
 
 @Component({
   selector: 'app-items',
@@ -46,7 +48,13 @@ export class ItemsComponent implements OnInit {
   }
 
   getAnimeListByName(q?: string) {
-    this.animeService.getAnimeSearchWithOptions({limit: 9, sfw: true, q: q})
+    this.animeService.getAnimeSearchWithOptions(
+      {
+        limit: 9,
+        sfw: true,
+        q: q, orderBy: anime_search_query_orderby.END_DATE,
+        sort: search_query_sort.DESC
+      })
       .subscribe(value => {
         this.animeList = value;
       });

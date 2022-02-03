@@ -7,7 +7,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {RouterModule, Routes} from "@angular/router";
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {CarouselComponent} from './components/carousel/carousel.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ItemsComponent} from './components/items/items.component';
 import {ElipsesPipe} from './pipes/elipses.pipe';
@@ -38,7 +38,8 @@ const routes: Routes = [
     NgbModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgbDropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,20 +5,16 @@
         <input type="text" class="form-control form-input" #movieSearchInput placeholder="Search anything..."/>
       </div>
       <div class="col-md-2">
-        <div class="btn-group">
-          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-            Small button
-          </button>
-          <select class="dropdown-menu" name="">
-            <option class="dropdown-item" value="TV">TV</option>
-            <option class="dropdown-item" value="OVA">OVA</option>
-            <option class="dropdown-item" value="MOVIE">Movie</option>
-            <option class="dropdown-item" value="SPECIAL">Special</option>
-            <option class="dropdown-item" value="ONA">ONA</option>
-            <option class="dropdown-item" value="MUSIC">Music</option>
-          </select>
+
+        <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+          <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">Toggle dropdown</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownManual">
+            <button ngbDropdownItem>Action - 1</button>
+            <button ngbDropdownItem>Another Action</button>
+            <button ngbDropdownItem>Something else is here</button>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
