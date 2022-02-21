@@ -14,6 +14,8 @@ import {search_query_sort} from "../../jikan/models/search_query_sort";
 })
 export class ItemsComponent implements OnInit {
   public animeList: anime_search | undefined;
+  q: string = '';
+  page: number = 0;
   @ViewChild('movieSearchInput', {static: true}) movieSearchInput: ElementRef | undefined;
 
   constructor(private animeService: AnimeService, private spinner: NgxSpinnerService) {
@@ -36,7 +38,8 @@ export class ItemsComponent implements OnInit {
         , debounceTime(1000)
         , distinctUntilChanged()
       ).subscribe((text: string) => {
-      this.getAnimeListByName(text);
+      this.q = text;
+      this.getAnimeListByName(this.q, this.page);
     });
   }
 
@@ -47,12 +50,14 @@ export class ItemsComponent implements OnInit {
       });
   }
 
-  getAnimeListByName(q?: string) {
+  getAnimeListByName(q?: string, page?: number) {
     this.animeService.getAnimeSearchWithOptions(
       {
         limit: 9,
         sfw: true,
-        q: q, orderBy: anime_search_query_orderby.END_DATE,
+        q: q,
+        orderBy: anime_search_query_orderby.END_DATE,
+        page: page,
         sort: search_query_sort.DESC
       })
       .subscribe(value => {

@@ -9,5 +9,5 @@ import type {pagination} from './pagination';
  * Anime Collection Resource
  */
 export type anime_search = ({
-data?: Array<anime>;
+  data: Array<anime> | [];
 } & pagination);
